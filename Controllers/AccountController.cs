@@ -155,6 +155,7 @@ namespace Sell_Train_Ticket.Controllers
                 { 
                     UserName = model.Email, 
                     Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
                     FullName = model.FullName,
                     DateOfBirth = model.DateOfBirth
                 };

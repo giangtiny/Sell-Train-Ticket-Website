@@ -24,6 +24,16 @@ namespace Sell_Train_Ticket.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Route> Routes { get; set; }
+        public DbSet<Seat> Seats { get; set; }
+        public DbSet<SeatType> SeatTypes { get; set; }
+        public DbSet<Station> Stations { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<TimeBetweenStation> TimeBetweenStations { get; set; }
+        public DbSet<Train> Trains { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<Wagon> Wagons { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

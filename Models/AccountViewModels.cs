@@ -74,6 +74,11 @@ namespace Sell_Train_Ticket.Models
         public DateTime DateOfBirth { get; set; }
 
         [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

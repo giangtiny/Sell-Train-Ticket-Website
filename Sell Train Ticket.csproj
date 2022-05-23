@@ -181,6 +181,15 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\Seat.cs" />
+    <Compile Include="Models\SeatType.cs" />
+    <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TimeBetweenStation.cs" />
+    <Compile Include="Models\Train.cs" />
+    <Compile Include="Models\Trip.cs" />
+    <Compile Include="Models\Wagon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
