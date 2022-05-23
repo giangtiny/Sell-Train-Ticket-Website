@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sell_Train_Ticket.Models
@@ -64,6 +65,14 @@ namespace Sell_Train_Ticket.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+
+        [Required]
+        [Display(Name = "Date Of Birth")]
+        public DateTime DateOfBirth { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
