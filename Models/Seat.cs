@@ -9,8 +9,10 @@ namespace Sell_Train_Ticket.Models
     {
         public int Id { get; set; }
 
-        public Wagon Wagon { get; set; }
+        public string Name { get; set; }
 
-        public SeatType SeatType { get; set; }
+        public int WagonId { get; set; }
+
+        public int SeatTypeId { get; set; }
     }
 }

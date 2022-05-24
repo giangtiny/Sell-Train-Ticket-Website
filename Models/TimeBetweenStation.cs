@@ -9,9 +9,9 @@ namespace Sell_Train_Ticket.Models
     {
         public int Id { get; set; }
 
-        public Station FirstStation { get; set; }
+        public int FirstStationId { get; set; }
 
-        public Station SecondStation { get; set; }
+        public int SecondStationId { get; set; }
 
         public int MovingTime { get; set; }
     }

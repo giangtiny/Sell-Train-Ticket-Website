@@ -9,6 +9,6 @@ namespace Sell_Train_Ticket.Models
     {
         public int Id { get; set; }
 
-        public Trip Trip { get; set; }
+        public string Name { get; set; }
     }
 }

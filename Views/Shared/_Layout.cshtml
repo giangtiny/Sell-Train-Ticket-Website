@@ -13,10 +13,10 @@
         <div class="container">
             <div class="nav">
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })
-                @Html.ActionLink("About", "About", "Home", new { @class = "nav-link" })
-                @Html.ActionLink("Contact", "Contact", "Home", new { @class = "nav-link" })
-                @Html.Partial("_LoginPartial")             
+                @Html.ActionLink("Customer", "Index", "Customer", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Station", "Index", "Station", new { area = "" }, new { @class = "nav-link" })
+                @Html.ActionLink("Route", "Index", "Route", new { area = "" }, new { @class = "nav-link" })
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
