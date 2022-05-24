@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Sell_Train_Ticket.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mb-4">Customers</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Full name</th>
+            <th>Date of birth</th>
+            <th>Phone number</th>
+            <th>Email</th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr class="table-light">
+                <td>@user.FullName</td>
+                <td>@user.DateOfBirth.ToString("d")</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Email</td>
+                <td class="">
+                    <a href="/Customer/Edit/@user.Id" class="btn btn-warning">Edit</a>
+                    <a href="/Customer/Delete/@user.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
