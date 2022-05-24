@@ -108,3 +108,4 @@ D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Projec
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell Train Ticket.pdb
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.InitialMigration.resources
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell Train Ticket.csproj.GenerateResource.cache
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddNewTables.resources

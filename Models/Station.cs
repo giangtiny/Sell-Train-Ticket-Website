@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,6 +21,9 @@ namespace Sell_Train_Ticket.Models
 
         [Required]
         [Display(Name = "Route")]
+        [ForeignKey("Route")]
         public int RouteId { get; set; }
+
+        public Route Route { get; set; }
     }
 }
