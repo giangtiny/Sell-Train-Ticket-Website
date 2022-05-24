@@ -47,7 +47,7 @@ namespace Sell_Train_Ticket.Migrations
                         RouteId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Routes", t => t.RouteId, cascadeDelete: true)
+                .ForeignKey("dbo.Routes", t => t.RouteId)
                 .Index(t => t.RouteId);
             
             CreateTable(
@@ -64,11 +64,11 @@ namespace Sell_Train_Ticket.Migrations
                         State = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.CustomerId, cascadeDelete: true)
-                .ForeignKey("dbo.Stations", t => t.DepartureStationId, cascadeDelete: true)
-                .ForeignKey("dbo.Stations", t => t.DestinationStationId, cascadeDelete: true)
-                .ForeignKey("dbo.Seats", t => t.SeatId, cascadeDelete: true)
-                .ForeignKey("dbo.Trips", t => t.TripId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.CustomerId)
+                .ForeignKey("dbo.Stations", t => t.DepartureStationId)
+                .ForeignKey("dbo.Stations", t => t.DestinationStationId)
+                .ForeignKey("dbo.Seats", t => t.SeatId)
+                .ForeignKey("dbo.Trips", t => t.TripId)
                 .Index(t => t.CustomerId)
                 .Index(t => t.TripId)
                 .Index(t => t.DepartureStationId)
@@ -86,8 +86,8 @@ namespace Sell_Train_Ticket.Migrations
                         TrainId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Routes", t => t.RouteId, cascadeDelete: true)
-                .ForeignKey("dbo.Trains", t => t.TrainId, cascadeDelete: true)
+                .ForeignKey("dbo.Routes", t => t.RouteId)
+                .ForeignKey("dbo.Trains", t => t.TrainId)
                 .Index(t => t.RouteId)
                 .Index(t => t.TrainId);
             
