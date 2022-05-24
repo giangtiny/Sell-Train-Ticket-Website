@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -275,6 +276,8 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Route\Index.cshtml" />
     <Content Include="Views\Route\Save.cshtml" />
+    <Content Include="Views\Station\Index.cshtml" />
+    <Content Include="Views\Station\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
