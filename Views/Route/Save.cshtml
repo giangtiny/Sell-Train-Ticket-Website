@@ -23,7 +23,7 @@ else
             @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
         </div>
     </div>
-    <input type="hidden" name="id" value="@Model.Id" />
+    @Html.HiddenFor(m => m.Id)
     <div class="">
         <div class="col-md-offset-2 col-md-8">
             <input type="submit" class="btn btn-primary mt-4" value="Save" />

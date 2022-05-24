@@ -30,12 +30,12 @@ else
         </div>
     </div>
     <div class="mt-2">
-        @Html.LabelFor(m => m.Station.Route, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Station.RouteId, new { @class = "col-md-2 control-label" })
         <div class="col-md-8">
-            @Html.DropDownListFor(m => m.Station.Route.Id, new SelectList(Model.Routes, "Id", "Name"), "Choose Route", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Station.RouteId, new SelectList(Model.Routes, "Id", "Name"), "Choose Route", new { @class = "form-control" })
         </div>
     </div>
-    <input type="hidden" name="id" value="@Model.Station.Id" />
+    @Html.HiddenFor(m => m.Station.Id)
     <div class="">
         <div class="col-md-offset-2 col-md-8">
             <input type="submit" class="btn btn-primary mt-4" value="Save" />

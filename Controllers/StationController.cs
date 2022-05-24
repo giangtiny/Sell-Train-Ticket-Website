@@ -56,6 +56,7 @@ namespace Sell_Train_Ticket.Controllers
             return View("Save", viewModel);
         }
 
+        [HttpPost]
         public ActionResult Save(Station station)
         {
             if (!ModelState.IsValid)

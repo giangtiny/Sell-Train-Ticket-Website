@@ -45,6 +45,7 @@ namespace Sell_Train_Ticket.Controllers
             return View("Save", route);
         }
 
+        [HttpPost]
         public ActionResult Save(Models.Route route)
         {
             if (!ModelState.IsValid)
