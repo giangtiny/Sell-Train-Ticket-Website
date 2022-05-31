@@ -79,7 +79,15 @@ namespace Sell_Train_Ticket.Controllers
                 return HttpNotFound();
             }
 
+            //Delete stations belong to deleted route
+            var stations = _context.Stations.Where(s => s.RouteId == id).ToList();
+            foreach (var station in stations)
+            {
+                _context.Stations.Remove(station);
+            }
+            //Delete route
             _context.Routes.Remove(routeInDb);
+
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Route");
