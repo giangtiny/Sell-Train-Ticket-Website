@@ -23,8 +23,12 @@ namespace Sell_Train_Ticket.Models
         public DateTime DepartureDate { get; set; }
 
         [Required]
-        [Display(Name = "Moving Time")]
-        public int MovingTime { get; set; }
+        [Display(Name = "Departure Time")]
+        public string DepartureTime { get; set; }
+
+        [Required]
+        [Display(Name = "Arrival Time")]
+        public string ArrivalTime { get; set; }
 
         [Required]
         [Display(Name = "Train")]
