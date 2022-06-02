@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\TrainController.cs" />
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.Designer.cs">
       <DependentUpon>202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206021357440_SeedDataForSeatTypeTable.cs" />
+    <Compile Include="Migrations\202206021357440_SeedDataForSeatTypeTable.Designer.cs">
+      <DependentUpon>202206021357440_SeedDataForSeatTypeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -212,6 +217,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\FindTicketViewModel.cs" />
     <Compile Include="ViewModels\FindTripViewModel.cs" />
+    <Compile Include="ViewModels\SeatViewModel.cs" />
     <Compile Include="ViewModels\StationViewModel.cs" />
     <Compile Include="ViewModels\WagonViewModel.cs" />
   </ItemGroup>
@@ -299,6 +305,8 @@
     <Content Include="Views\Train\Save.cshtml" />
     <Content Include="Views\Wagon\Index.cshtml" />
     <Content Include="Views\Wagon\Save.cshtml" />
+    <Content Include="Views\Seat\Index.cshtml" />
+    <Content Include="Views\Seat\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.resx">
       <DependentUpon>202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206021357440_SeedDataForSeatTypeTable.resx">
+      <DependentUpon>202206021357440_SeedDataForSeatTypeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

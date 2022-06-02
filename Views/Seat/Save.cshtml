@@ -1,0 +1,49 @@
+﻿@model Sell_Train_Ticket.ViewModels.SeatViewModel
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Seat.Id == 0)
+{
+    <h1>Add New Seat</h1>
+}
+else
+{
+    <h1>Edit Seat</h1>
+}
+
+@using (Html.BeginForm("Save", "Seat", new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Seat.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Seat.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Seat.SeatTypeId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.Seat.SeatTypeId, new SelectList(Model.SeatTypes, "Id", "Name"), "Choose Seat Type", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Seat.WagonId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.Seat.WagonId, new SelectList(Model.Wagons, "Id", "Name"), "Choose Wagon", new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Seat.Id)
+    <div class="">
+        <div class="col-md-offset-2 col-md-8">
+            <input type="submit" class="btn btn-primary mt-4" value="Save" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

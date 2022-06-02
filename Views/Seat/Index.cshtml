@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Sell_Train_Ticket.Models.Seat>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="mb-4">Seats</h1>
+
+<a href="/Seat/Add" class="btn btn-primary">New Seat</a>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Seat Type</th>
+                <th>Wagon</th>
+                <th>Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var seat in Model)
+            {
+                <tr class="table-light">
+                    <td>@seat.Name</td>
+                    <td>@seat.SeatType.Name</td>
+                    <td>@seat.Wagon.Name</td>
+                    <td class="">
+                        <a href="/Seat/Edit/@seat.Id" class="btn btn-warning">Edit</a>
+                        <a href="/Seat/Delete/@seat.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <tr>
+        <td>
+            <h2 class="text-center mt-4">No Seat founded</h2>
+        </td>
+    </tr>
+}
+

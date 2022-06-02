@@ -111,3 +111,4 @@ D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Projec
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddNewTables.resources
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddDepartureTimeAndArrivalTimeToTrip.resources
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddRequiredDataAnnotationsToTrainAndWagonAndSeat.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.SeedDataForSeatTypeTable.resources
