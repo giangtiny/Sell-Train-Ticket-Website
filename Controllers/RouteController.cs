@@ -56,8 +56,6 @@ namespace Sell_Train_Ticket.Controllers
             }
             if (route.Id == 0)
             {
-                var stations = _context.Stations.ToList();
-
                 _context.Routes.Add(route);
             }
             else
@@ -92,6 +90,5 @@ namespace Sell_Train_Ticket.Controllers
 
             return RedirectToAction("Index", "Route");
         }
-
     }
 }

@@ -174,6 +174,8 @@
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\StationController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Controllers\TrainController.cs" />
+    <Compile Include="Controllers\WagonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +190,10 @@
     <Compile Include="Migrations\202206021217566_AddDepartureTimeAndArrivalTimeToTrip.cs" />
     <Compile Include="Migrations\202206021217566_AddDepartureTimeAndArrivalTimeToTrip.Designer.cs">
       <DependentUpon>202206021217566_AddDepartureTimeAndArrivalTimeToTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.cs" />
+    <Compile Include="Migrations\202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.Designer.cs">
+      <DependentUpon>202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -207,6 +213,7 @@
     <Compile Include="ViewModels\FindTicketViewModel.cs" />
     <Compile Include="ViewModels\FindTripViewModel.cs" />
     <Compile Include="ViewModels\StationViewModel.cs" />
+    <Compile Include="ViewModels\WagonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -288,6 +295,10 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Ticket\FindTrip.cshtml" />
     <Content Include="Views\Ticket\FindTicket.cshtml" />
+    <Content Include="Views\Train\Index.cshtml" />
+    <Content Include="Views\Train\Save.cshtml" />
+    <Content Include="Views\Wagon\Index.cshtml" />
+    <Content Include="Views\Wagon\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -332,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206021217566_AddDepartureTimeAndArrivalTimeToTrip.resx">
       <DependentUpon>202206021217566_AddDepartureTimeAndArrivalTimeToTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.resx">
+      <DependentUpon>202206021239409_AddRequiredDataAnnotationsToTrainAndWagonAndSeat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

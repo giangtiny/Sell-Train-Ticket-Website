@@ -100,6 +100,5 @@ namespace Sell_Train_Ticket.Controllers
 
             return RedirectToAction("Index", "Station");
         }
-
     }
 }
