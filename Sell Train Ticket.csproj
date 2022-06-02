@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +184,10 @@
     <Compile Include="Migrations\202205240819321_AddNewTables.cs" />
     <Compile Include="Migrations\202205240819321_AddNewTables.Designer.cs">
       <DependentUpon>202205240819321_AddNewTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206021217566_AddDepartureTimeAndArrivalTimeToTrip.cs" />
+    <Compile Include="Migrations\202206021217566_AddDepartureTimeAndArrivalTimeToTrip.Designer.cs">
+      <DependentUpon>202206021217566_AddDepartureTimeAndArrivalTimeToTrip.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -199,6 +204,8 @@
     <Compile Include="Models\Wagon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\FindTicketViewModel.cs" />
+    <Compile Include="ViewModels\FindTripViewModel.cs" />
     <Compile Include="ViewModels\StationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -251,8 +258,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -280,6 +285,9 @@
     <Content Include="Views\Route\Save.cshtml" />
     <Content Include="Views\Station\Index.cshtml" />
     <Content Include="Views\Station\Save.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Views\Ticket\FindTrip.cshtml" />
+    <Content Include="Views\Ticket\FindTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205240819321_AddNewTables.resx">
       <DependentUpon>202205240819321_AddNewTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206021217566_AddDepartureTimeAndArrivalTimeToTrip.resx">
+      <DependentUpon>202206021217566_AddDepartureTimeAndArrivalTimeToTrip.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

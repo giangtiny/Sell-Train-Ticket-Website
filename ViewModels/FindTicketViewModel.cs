@@ -10,6 +10,6 @@ namespace Sell_Train_Ticket.ViewModels
     {
         public Station DepartureStation { get; set; }
         public Station DestinationStation { get; set; }
-        public DateTime DepartureDate { get; set; }
+        public List<Trip> Trips { get; set; }
     }
 }
