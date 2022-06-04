@@ -1,0 +1,61 @@
+﻿@model Sell_Train_Ticket.ViewModels.TripViewModel
+@{
+    ViewBag.Title = "Save";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Trip.Id == 0)
+{
+    <h1>Add New Trip</h1>
+}
+else
+{
+    <h1>Edit Trip</h1>
+}
+
+@using (Html.BeginForm("Save", "Trip", new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Trip.RouteId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.Trip.RouteId, new SelectList(Model.Routes, "Id", "Name"), "Choose Seat Type", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Trip.DepartureDate, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Trip.DepartureDate, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Trip.DepartureTime, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Trip.DepartureTime, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Trip.ArrivalTime, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Trip.ArrivalTime, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="mt-2">
+        @Html.LabelFor(m => m.Trip.TrainId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-8">
+            @Html.DropDownListFor(m => m.Trip.TrainId, new SelectList(Model.Trains, "Id", "Name"), "Choose Wagon", new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => m.Trip.Id)
+    <div class="">
+        <div class="col-md-offset-2 col-md-8">
+            <input type="submit" class="btn btn-primary mt-4" value="Save" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
