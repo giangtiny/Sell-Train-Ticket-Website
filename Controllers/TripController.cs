@@ -27,7 +27,7 @@ namespace Sell_Train_Ticket.Controllers
         {
             var trips = _context.Trips.Include("Route").Include("Train").ToList();
 
-            return View();
+            return View(trips);
         }
 
         public ActionResult Add()
@@ -75,21 +75,34 @@ namespace Sell_Train_Ticket.Controllers
             if (trip.Id == 0)
             {
                 _context.Trips.Add(trip);
+
                 //Create a list of tickets for this trip
+                var firstStation = _context.Stations.Single(s => s.RouteId == trip.RouteId && s.IsFirst == true);
+                var finalStation = _context.Stations.Single(s => s.RouteId == trip.RouteId && s.IsFinal == true);
                 var seats = _context.Seats.Where(s => s.Wagon.TrainId == trip.TrainId).ToList();
                 foreach(var seat in seats)
                 {
                     var newTicket = new Ticket();
                     newTicket.CustomerId = User.Identity.GetUserId();
                     newTicket.TripId = trip.Id;
-                    newTicket.DepartureStationId = 0;
-                    newTicket.DestinationStationId = 0;
+                    newTicket.DepartureStationId = firstStation.Id;
+                    newTicket.DestinationStationId = finalStation.Id;
                     newTicket.SeatId = seat.Id;
                     newTicket.IsKid = false;
                     newTicket.State = false;
 
                     _context.Tickets.Add(newTicket);
                 }
+
+                //Create a statistic for this new trip
+                var tripStatistic = new TripStatistic
+                {
+                    TripId = trip.Id,
+                    Revenue = 0,
+                    TicketInStock = seats.Count()
+                };
+
+                _context.TripStatistics.Add(tripStatistic);
             }
             else
             {
@@ -125,7 +138,7 @@ namespace Sell_Train_Ticket.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Station");
+            return RedirectToAction("Index", "Trip");
         }
     }
 }
