@@ -99,6 +99,7 @@ namespace Sell_Train_Ticket.Controllers
                 {
                     TripId = trip.Id,
                     Revenue = 0,
+                    TotalTicket = seats.Count(),
                     TicketInStock = seats.Count()
                 };
 
