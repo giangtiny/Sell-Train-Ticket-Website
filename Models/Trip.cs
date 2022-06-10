@@ -24,11 +24,11 @@ namespace Sell_Train_Ticket.Models
 
         [Required]
         [Display(Name = "Departure Time")]
-        public string DepartureTime { get; set; }
+        public DateTime DepartureTime { get; set; }
 
         [Required]
         [Display(Name = "Arrival Time")]
-        public string ArrivalTime { get; set; }
+        public DateTime ArrivalTime { get; set; }
 
         [Required]
         [Display(Name = "Train")]
@@ -36,5 +36,7 @@ namespace Sell_Train_Ticket.Models
         public int TrainId { get; set; }
 
         public Train Train { get; set; }
+
+        public bool IsReverse { get; set; }
     }
 }
