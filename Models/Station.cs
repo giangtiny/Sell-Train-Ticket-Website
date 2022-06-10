@@ -25,5 +25,9 @@ namespace Sell_Train_Ticket.Models
         public int RouteId { get; set; }
 
         public Route Route { get; set; }
+
+        public bool IsFirst { get; set; }
+
+        public bool IsFinal { get; set; }
     }
 }

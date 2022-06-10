@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="mb-4">Stations</h1>
+<h1 class="my-4">Stations</h1>
 
 <a href="/Station/Add" class="btn btn-primary">New Station</a>
 
@@ -23,7 +23,21 @@
             @foreach (var station in Model)
             {
                 <tr class="table-light">
-                    <td>@station.Name</td>
+                    @if (station.IsFirst)
+                    {
+                        <td>@station.Name (First)</td>
+                    }
+                    else
+                    {
+                        if (station.IsFinal)
+                        {
+                            <td>@station.Name (Final)</td>
+                        }
+                        else
+                        {
+                            <td>@station.Name</td>
+                        }
+                    }
                     <td>@station.ParkingTime</td>
                     <td>@station.Route.Name</td>
                     <td class="">

@@ -38,6 +38,7 @@ namespace Sell_Train_Ticket.Models
         public DbSet<Train> Trains { get; set; }
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Wagon> Wagons { get; set; }
+        public DbSet<TripStatistic> TripStatistics { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

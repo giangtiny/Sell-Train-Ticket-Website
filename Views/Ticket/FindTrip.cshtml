@@ -1,8 +1,46 @@
-﻿
+﻿@model Sell_Train_Ticket.ViewModels.FindTicketViewModel
 @{
     ViewBag.Title = "FindTrip";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FindTrip</h2>
+<h1 class="my-4">@Model.DepartureStation.Name - @Model.DestinationStation.Name at @Model.DepartureDate.ToString("d")</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Trip</th>
+            <th>Departure Date</th>
+            <th>Moving Time</th>
+            <th>Ticket</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trip in Model.Trips)
+        {
+            <tr class="table-light">
+                @if (trip.IsReverse)
+                {
+                    <td>@trip.Route.Name (Reverse)</td>
+                }
+                else
+                {
+                    <td>@trip.Route.Name</td>
+                }
+                <td>@trip.DepartureDate.ToString("d")</td>
+                <td>@trip.DepartureTime.TimeOfDay - @trip.ArrivalTime.TimeOfDay</td>
+                <td class="">
+                    @using (Html.BeginForm("FindTicket", "Ticket"))
+                    {
+                        <input id="tripId" name="tripId" type="hidden" value="@trip.Id" />
+                        <input id="depStaId" name="depStaId" type="hidden" value="@Model.DepartureStation.Id" />
+                        <input id="desStaId" name="desStaId" type="hidden" value="@Model.DestinationStation.Id" />
+                        <input id="depDate" name="depDate" type="hidden" value="@Model.DepartureDate" />
+                        <input type="submit" class="btn btn-primary" value="Find tickets" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 

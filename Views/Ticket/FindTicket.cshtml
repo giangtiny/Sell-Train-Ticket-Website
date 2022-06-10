@@ -1,8 +1,47 @@
-﻿
+﻿@model Sell_Train_Ticket.ViewModels.DisplayTicketViewModel
 @{
     ViewBag.Title = "FindTicket";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>FindTicket</h2>
+<h1 class="my-4">@Model.DepartureStation.Name - @Model.DestinationStation.Name at @Model.DepartureDate.ToString("d")</h1>
 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Seat</th>
+            <th>Wagon</th>
+            <th>Train</th>
+            <th>Price</th>
+            <th>Buy</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model.Tickets)
+        {
+            <tr class="table-light">
+                <td>@ticket.Seat.Name - @ticket.Seat.SeatType.Name</td>
+                <td>@ticket.Seat.Wagon.Name</td>
+                <td>@ticket.Seat.Wagon.Train.Name</td>
+                <td>@ticket.Price</td>
+                @if (ticket.State)
+                {
+                    <td>Ordered</td>
+                }
+                else
+                {
+            <td>
+                @using (Html.BeginForm("BuyTicket", "Ticket"))
+                {
+                    <input id="ticketId" name="ticketId" type="hidden" value="@ticket.Id" />
+                    <input id="ticketPrice" name="ticketPrice" type="hidden" value="@ticket.Price" />
+                    <input id="depStaId" name="depStaId" type="hidden" value="@Model.DepartureStation.Id" />
+                    <input id="desStaId" name="desStaId" type="hidden" value="@Model.DestinationStation.Id" />
+                    <input type="submit" class="btn btn-primary" value="Buy Ticket" />
+                }
+            </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

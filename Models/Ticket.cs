@@ -44,10 +44,6 @@ namespace Sell_Train_Ticket.Models
 
         public Seat Seat { get; set; }
 
-        [Required]
-        [Display(Name = "Ticket for")]
-        public bool IsKid { get; set; }
-
         public bool State { get; set; }
 
         public int Price { get; set; }

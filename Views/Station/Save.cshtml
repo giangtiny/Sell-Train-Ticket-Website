@@ -35,6 +35,18 @@ else
             @Html.DropDownListFor(m => m.Station.RouteId, new SelectList(Model.Routes, "Id", "Name"), "Choose Route", new { @class = "form-control" })
         </div>
     </div>
+    <div class="d-flex mt-2">
+        <div class="checkbox me-3">
+            <label>
+                @Html.CheckBoxFor(m => m.Station.IsFirst) First station in route?
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(m => m.Station.IsFinal) Final station in route?
+            </label>
+        </div>
+    </div>
     @Html.HiddenFor(m => m.Station.Id)
     <div class="">
         <div class="col-md-offset-2 col-md-8">

@@ -1,8 +1,61 @@
-﻿
+﻿@model IEnumerable<Sell_Train_Ticket.Models.Ticket>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h1 class="my-4">Tickets</h1>
+
+@*<a href="/Ticket/Add" class="btn btn-primary">New Ticket</a>*@
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Trip</th>
+                <th>Departure Station</th>
+                <th>Destination Station</th>
+                <th>Seat</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model)
+            {
+                <tr class="table-light">
+                    <td>@ticket.Customer.Email</td>
+                    @if (ticket.Trip.IsReverse)
+                    {
+                        <td>@ticket.Trip.Route.Name (Reverse)</td>
+                    }
+                    else
+                    {
+                        <td>@ticket.Trip.Route.Name</td>
+                    }
+                    <td>@ticket.DepartureStation.Name</td>
+                    <td>@ticket.DestinationStation.Name</td>
+                    <td>@ticket.Seat.Name</td>
+                    @if (!ticket.State)
+                    {
+                        <td>Not Ordered</td>
+                    }
+                    else
+                    {
+                        <td>Ordered</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <tr>
+        <td>
+            <h2 class="text-center mt-4">No Station founded</h2>
+        </td>
+    </tr>
+}
 

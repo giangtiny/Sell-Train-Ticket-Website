@@ -174,8 +174,10 @@
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\SeatController.cs" />
     <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\StatisticController.cs" />
     <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\TrainController.cs" />
+    <Compile Include="Controllers\TripController.cs" />
     <Compile Include="Controllers\WagonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,6 +202,38 @@
     <Compile Include="Migrations\202206021357440_SeedDataForSeatTypeTable.Designer.cs">
       <DependentUpon>202206021357440_SeedDataForSeatTypeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206080703538_UpdateTripClass.cs" />
+    <Compile Include="Migrations\202206080703538_UpdateTripClass.Designer.cs">
+      <DependentUpon>202206080703538_UpdateTripClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206080718201_UpdateRouteClass.cs" />
+    <Compile Include="Migrations\202206080718201_UpdateRouteClass.Designer.cs">
+      <DependentUpon>202206080718201_UpdateRouteClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206080749496_UpdateStationClass.cs" />
+    <Compile Include="Migrations\202206080749496_UpdateStationClass.Designer.cs">
+      <DependentUpon>202206080749496_UpdateStationClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206081027069_AddTripStatisticModel.cs" />
+    <Compile Include="Migrations\202206081027069_AddTripStatisticModel.Designer.cs">
+      <DependentUpon>202206081027069_AddTripStatisticModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206081309405_AddTotalTicketToTripStatistic.cs" />
+    <Compile Include="Migrations\202206081309405_AddTotalTicketToTripStatistic.Designer.cs">
+      <DependentUpon>202206081309405_AddTotalTicketToTripStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206090408562_AddPriceToTicket.cs" />
+    <Compile Include="Migrations\202206090408562_AddPriceToTicket.Designer.cs">
+      <DependentUpon>202206090408562_AddPriceToTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206100553419_AddIsReserveToTrip.cs" />
+    <Compile Include="Migrations\202206100553419_AddIsReserveToTrip.Designer.cs">
+      <DependentUpon>202206100553419_AddIsReserveToTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206100728558_RemoveIsKidFromTicket.cs" />
+    <Compile Include="Migrations\202206100728558_RemoveIsKidFromTicket.Designer.cs">
+      <DependentUpon>202206100728558_RemoveIsKidFromTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -212,13 +246,18 @@
     <Compile Include="Models\TimeBetweenStation.cs" />
     <Compile Include="Models\Train.cs" />
     <Compile Include="Models\Trip.cs" />
+    <Compile Include="Models\TripStatistic.cs" />
     <Compile Include="Models\Wagon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DisplayTicketViewModel.cs" />
     <Compile Include="ViewModels\FindTicketViewModel.cs" />
     <Compile Include="ViewModels\FindTripViewModel.cs" />
+    <Compile Include="ViewModels\RefundViewModel.cs" />
     <Compile Include="ViewModels\SeatViewModel.cs" />
     <Compile Include="ViewModels\StationViewModel.cs" />
+    <Compile Include="ViewModels\TripStatisticViewModel.cs" />
+    <Compile Include="ViewModels\TripViewModel.cs" />
     <Compile Include="ViewModels\WagonViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +298,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\trip_statistic.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -307,6 +348,10 @@
     <Content Include="Views\Wagon\Save.cshtml" />
     <Content Include="Views\Seat\Index.cshtml" />
     <Content Include="Views\Seat\Save.cshtml" />
+    <Content Include="Views\Trip\Index.cshtml" />
+    <Content Include="Views\Trip\Save.cshtml" />
+    <Content Include="Views\Ticket\Refund.cshtml" />
+    <Content Include="Views\Statistic\Trip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,6 +402,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202206021357440_SeedDataForSeatTypeTable.resx">
       <DependentUpon>202206021357440_SeedDataForSeatTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206080703538_UpdateTripClass.resx">
+      <DependentUpon>202206080703538_UpdateTripClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206080718201_UpdateRouteClass.resx">
+      <DependentUpon>202206080718201_UpdateRouteClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206080749496_UpdateStationClass.resx">
+      <DependentUpon>202206080749496_UpdateStationClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206081027069_AddTripStatisticModel.resx">
+      <DependentUpon>202206081027069_AddTripStatisticModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206081309405_AddTotalTicketToTripStatistic.resx">
+      <DependentUpon>202206081309405_AddTotalTicketToTripStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206090408562_AddPriceToTicket.resx">
+      <DependentUpon>202206090408562_AddPriceToTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206100553419_AddIsReserveToTrip.resx">
+      <DependentUpon>202206100553419_AddIsReserveToTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206100728558_RemoveIsKidFromTicket.resx">
+      <DependentUpon>202206100728558_RemoveIsKidFromTicket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

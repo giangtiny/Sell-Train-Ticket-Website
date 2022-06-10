@@ -20,13 +20,13 @@ else
     <div class="mt-2">
         @Html.LabelFor(m => m.Trip.RouteId, new { @class = "col-md-2 control-label" })
         <div class="col-md-8">
-            @Html.DropDownListFor(m => m.Trip.RouteId, new SelectList(Model.Routes, "Id", "Name"), "Choose Seat Type", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Trip.RouteId, new SelectList(Model.Routes, "Id", "Name"), "Choose Route", new { @class = "form-control" })
         </div>
     </div>
     <div class="mt-2">
         @Html.LabelFor(m => m.Trip.DepartureDate, new { @class = "col-md-2 control-label" })
         <div class="col-md-8">
-            @Html.TextBoxFor(m => m.Trip.DepartureDate, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Trip.DepartureDate, "{0:d MMM yyyy}", new { @class = "form-control" })
         </div>
     </div>
     <div class="mt-2">
@@ -44,8 +44,13 @@ else
     <div class="mt-2">
         @Html.LabelFor(m => m.Trip.TrainId, new { @class = "col-md-2 control-label" })
         <div class="col-md-8">
-            @Html.DropDownListFor(m => m.Trip.TrainId, new SelectList(Model.Trains, "Id", "Name"), "Choose Wagon", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Trip.TrainId, new SelectList(Model.Trains, "Id", "Name"), "Choose Train", new { @class = "form-control" })
         </div>
+    </div>
+    <div class="checkbox mt-2">
+        <label>
+            @Html.CheckBoxFor(m => m.Trip.IsReverse) Reverse?
+        </label>
     </div>
     @Html.HiddenFor(m => m.Trip.Id)
     <div class="">

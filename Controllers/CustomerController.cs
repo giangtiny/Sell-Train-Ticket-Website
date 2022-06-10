@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Sell_Train_Ticket.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class CustomerController : Controller
     {
         private ApplicationDbContext _context;
@@ -23,12 +24,7 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult Index()
         {
-            //if (!User.IsInRole("Manager")) 
-            //{ 
-            //    ViewBag.errorMessage = "You don't have permission to access this page."; 
-            //    return RedirectToAction("Login", "Account", ViewBag.errorMessage); 
-            //} 
-            var customers = _context.Users.Where(u => !u.FullName.Contains("Admin")).ToList();
+            var customers = _context.Users.Where(u => !u.FullName.Contains("Manager")).ToList();
 
             return View(customers);
         }

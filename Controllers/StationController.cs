@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Sell_Train_Ticket.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class StationController : Controller
     {
         private ApplicationDbContext _context;
@@ -80,6 +81,8 @@ namespace Sell_Train_Ticket.Controllers
                 stationInDb.Name = station.Name;
                 stationInDb.ParkingTime = station.ParkingTime;
                 stationInDb.RouteId = station.RouteId;
+                stationInDb.IsFirst = station.IsFirst;
+                stationInDb.IsFinal = station.IsFinal;
             }
 
             _context.SaveChanges();

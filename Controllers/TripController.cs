@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Sell_Train_Ticket.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class TripController : Controller
     {
         private ApplicationDbContext _context;
@@ -88,8 +89,8 @@ namespace Sell_Train_Ticket.Controllers
                     newTicket.DepartureStationId = firstStation.Id;
                     newTicket.DestinationStationId = finalStation.Id;
                     newTicket.SeatId = seat.Id;
-                    newTicket.IsKid = false;
                     newTicket.State = false;
+                    newTicket.Price = 0;
 
                     _context.Tickets.Add(newTicket);
                 }
@@ -114,6 +115,7 @@ namespace Sell_Train_Ticket.Controllers
                 tripInDb.DepartureTime = trip.DepartureTime;
                 tripInDb.ArrivalTime = trip.ArrivalTime;
                 tripInDb.TrainId = trip.TrainId;
+                tripInDb.IsReverse = trip.IsReverse;
             }
 
             _context.SaveChanges();

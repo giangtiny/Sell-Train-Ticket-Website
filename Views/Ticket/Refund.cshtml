@@ -1,0 +1,51 @@
+﻿@model Sell_Train_Ticket.ViewModels.RefundViewModel
+@{
+    ViewBag.Title = "Refund";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="my-4">Your Tickets</h1>
+
+@if (Model.Tickets.Count() > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Departure Date</th>
+                <th>Moving time</th>
+                <th>Go</th>
+                <th>Seat</th>
+                <th>Wagon</th>
+                <th>Train</th>
+                <th>Price</th>
+                <th>Refund</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model.Tickets)
+            {
+                <tr class="table-light">
+                    <td>@ticket.Trip.DepartureDate.ToString("d")</td>
+                    <td>@ticket.Trip.DepartureTime.TimeOfDay - @ticket.Trip.ArrivalTime.TimeOfDay</td>
+                    <td>@ticket.DepartureStation.Name - @ticket.DestinationStation.Name</td>
+                    <td>@ticket.Seat.Name - @ticket.Seat.SeatType.Name</td>
+                    <td>@ticket.Seat.Wagon.Name</td>
+                    <td>@ticket.Seat.Wagon.Train.Name</td>
+                    <td>@ticket.Price</td>
+                    <td>
+                        <a class="btn btn-primary" href="/Ticket/RefundTicket?ticketId=@ticket.Id">Refund Ticket</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <tr>
+        <td>
+            <h2 class="text-center mt-4">You haven't buy any ticket yet</h2>
+        </td>
+    </tr>
+}
+

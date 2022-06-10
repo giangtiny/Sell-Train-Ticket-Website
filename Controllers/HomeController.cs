@@ -24,7 +24,18 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if (User.IsInRole("Manager"))
+            {
+                return RedirectToAction("Index", "Customer");
+            }
+
+            var viewModel = new FindTripViewModel
+            {
+                DepartureDate = new DateTime(),
+                Stations = _context.Stations.ToList()
+            };
+
+            return View(viewModel);
         }
     }
 }

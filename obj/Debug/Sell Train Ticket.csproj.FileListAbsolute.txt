@@ -112,3 +112,11 @@ D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Projec
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddDepartureTimeAndArrivalTimeToTrip.resources
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddRequiredDataAnnotationsToTrainAndWagonAndSeat.resources
 D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.SeedDataForSeatTypeTable.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.UpdateTripClass.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.UpdateRouteClass.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.UpdateStationClass.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddTripStatisticModel.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddTotalTicketToTripStatistic.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddPriceToTicket.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.AddIsReserveToTrip.resources
+D:\Giang\3rd Year\2nd Semester\Object-oriented Software Engineering\Final Project\Sell Train Ticket\obj\Debug\Sell_Train_Ticket.Migrations.RemoveIsKidFromTicket.resources

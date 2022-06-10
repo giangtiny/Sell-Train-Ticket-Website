@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="mb-4">Trips</h1>
+<h1 class="my-4">Trips</h1>
 
 <a href="/Trip/Add" class="btn btn-primary">New Trip</a>
 
@@ -24,9 +24,16 @@
             @foreach (var trip in Model)
             {
                 <tr class="table-light">
-                    <td>@trip.Route.Name</td>
+                    @if (trip.IsReverse)
+                    {
+                        <td>@trip.Route.Name (Reverse)</td>
+                    }
+                    else
+                    {
+                        <td>@trip.Route.Name</td>
+                    }
                     <td>@trip.DepartureDate.ToString("d")</td>
-                    <td>@trip.DepartureTime to @trip.ArrivalTime</td>
+                    <td>@trip.DepartureTime.TimeOfDay - @trip.ArrivalTime.TimeOfDay</td>
                     <td>@trip.Train.Name</td>
                     <td class="">
                         <a href="/Trip/Edit/@trip.Id" class="btn btn-warning">Edit</a>

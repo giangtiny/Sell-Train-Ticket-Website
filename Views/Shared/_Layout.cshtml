@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,26 +10,137 @@
 
 </head>
 <body>
-    <div class="navbar bg-dark">
-        <div class="container">
-            <div class="nav">
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Customer", "Index", "Customer", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Station", "Index", "Station", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Route", "Index", "Route", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Train", "Index", "Train", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Wagon", "Index", "Wagon", new { area = "" }, new { @class = "nav-link" })
-                @Html.ActionLink("Seat", "Index", "Seat", new { area = "" }, new { @class = "nav-link" })
-                @Html.Partial("_LoginPartial")
+    @if (User.IsInRole("Manager"))
+    {
+        <div class="navbar bg-dark">
+            <div class="container">
+                <div class="nav">
+                    @Html.ActionLink("Customer", "Index", "Customer", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Station", "Index", "Station", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Route", "Index", "Route", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Train", "Index", "Train", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Wagon", "Index", "Wagon", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Seat", "Index", "Seat", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Trip", "Index", "Trip", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Ticket", "Index", "Ticket", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.ActionLink("Statistic", "Trip", "Statistic", new { area = "" }, new { @class = "nav-link text-white" })
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+                <a href="/Home/Index" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                    <img class="bi me-2" width="40" height="32" src="http://cdn.onlinewebfonts.com/svg/img_460351.png" aria-label="Bootstrap"></img>
+                </a>
+
+
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/Home/Index" class="nav-link px-2 link-dark">Home</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Book tickets</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">Reservation Information</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+                    <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+                </ul>
+
+                <div class="col-md-3 text-end">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "d-flex justify-content-end" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link link-dark px-2" })
+
+                            <a class="nav-link link-dark px-2" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                        }
+                    }
+                    else
+                    {
+                        <ul class="nav" style="justify-content: flex-end;">
+                            <li class="nav-item">
+                                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link link-dark px-2" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link link-dark px-2" })
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </header>
+        </div>
+    }
+
     <div class="container body-content">
         @RenderBody()
-        @*<footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>*@
     </div>
+
+    @if (!User.IsInRole("Manager"))
+    {
+        <div class="b-example-divider mt-5" style="height: 0.1rem"></div>
+        <div class="container">
+            <footer class="pt-5">
+                <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section I</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section II</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section III</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between pt-4 mt-4 border-top">
+                    <p>&copy; 2022 ShTrain, Inc. All rights reserved.</p>
+
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><a class="link-dark" href="#"><i class="fab fa-twitter fa-2x"></i></a></li>
+                        <li class="ms-3"><a class="link-dark" href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
+                        <li class="ms-3"><a class="link-dark" href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    }
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

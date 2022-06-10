@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Sell_Train_Ticket.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class RouteController : Controller
     {
         private ApplicationDbContext _context;
@@ -75,6 +76,16 @@ namespace Sell_Train_Ticket.Controllers
             if (routeInDb == null)
             {
                 return HttpNotFound();
+            }
+
+            //Delete tickets and trips belong to deleted route
+            var trips = _context.Trips.Where(t => t.RouteId == id).ToList();
+            
+            foreach(var trip in trips)
+            {
+                var ticket = _context.Tickets.Single(t => t.TripId == trip.Id);
+                _context.Tickets.Remove(ticket);
+                _context.Trips.Remove(trip);
             }
 
             //Delete stations belong to deleted route
