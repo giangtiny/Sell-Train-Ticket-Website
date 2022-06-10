@@ -49,5 +49,7 @@ namespace Sell_Train_Ticket.Models
         public bool IsKid { get; set; }
 
         public bool State { get; set; }
+
+        public int Price { get; set; }
     }
 }
