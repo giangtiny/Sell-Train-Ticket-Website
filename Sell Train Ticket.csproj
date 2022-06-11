@@ -352,6 +352,7 @@
     <Content Include="Views\Trip\Save.cshtml" />
     <Content Include="Views\Ticket\Refund.cshtml" />
     <Content Include="Views\Statistic\Trip.cshtml" />
+    <Content Include="Views\Home\Faqs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

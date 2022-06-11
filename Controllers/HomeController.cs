@@ -37,5 +37,10 @@ namespace Sell_Train_Ticket.Controllers
 
             return View(viewModel);
         }
+
+        public ActionResult Faqs()
+        {
+            return View();
+        }
     }
 }

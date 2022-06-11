@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Faqs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bd-example-snippet bd-code-snippet">
+    <div class="bd-example">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h4 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        1. When do I can refund ticket?
+                    </button>
+                </h4>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <p class="card-text">
+                                You can only refund the ticket when the time you refund is 30 minutes before the train departure time, and you have to pay 10% of the fare.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h4 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        2. How the ticket price was calculated?
+                    </button>
+                </h4>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <p class="card-text">The ticket price is calculated by the travel distance and the seat type you choosed. The seat types and their price are shown below:</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Hard sear: 60000VND</li>
+                            <li class="list-group-item">Soft seat: 90000VND</li>
+                            <li class="list-group-item">Bed: 120000VND</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
