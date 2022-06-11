@@ -23,7 +23,14 @@
             @foreach (var item in Model.TripStatistics)
             {
                 <tr>
-                    <td>@item.Trip.Route.Name</td>
+                    @if (item.Trip.IsReverse)
+                    {
+                        <td>@item.Trip.Route.Name (Reverse)</td>
+                    }
+                    else
+                    {
+                        <td>@item.Trip.Route.Name</td>
+                    }
                     <td>@item.Revenue</td>
                     <td>@item.TotalTicket</td>
                     <td>@item.TicketInStock</td>
