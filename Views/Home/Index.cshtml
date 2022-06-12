@@ -63,8 +63,7 @@
                     @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="autocomplete">
                         <label class="control-label" for="DepartureStation">Departure Station</label>
-                        @*@Html.DropDownListFor(m => m.DepartureStation, new SelectList(Model.Stations, "Id", "Name"), "Choose Station", new { @class = "form-control" })*@
-                        @Html.TextBoxFor(m => m.DepartureStation, new { @class = "form-control" })               
+                        @Html.DropDownListFor(m => m.DepartureStation, new SelectList(Model.Stations, "Id", "Name"), "Choose Station", new { @class = "form-control" })         
                     </div>
                     <div class="autocomplete">
                         <label class="control-label" for="DestinationStation">Destination Station</label>
