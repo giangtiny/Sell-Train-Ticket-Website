@@ -239,6 +239,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\RouteStatistic.cs" />
     <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\SeatType.cs" />
     <Compile Include="Models\Station.cs" />

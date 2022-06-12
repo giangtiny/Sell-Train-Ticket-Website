@@ -3,12 +3,54 @@
     ViewBag.Title = "Trip";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    
+
 <h1 class="my-4">Weekly revenue statistics</h1>
 
 <canvas class="my-4 w-100" id="myChartaa" width="900" height="380"></canvas>
 
 <h2>Statistics for each trip</h2>
+@if (Model.TripStatistics.Count() > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Route</th>
+                    <th scope="col">Revenue</th>
+                    <th scope="col">Total tickets</th>
+                    <th scope="col">Tickets in stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TripStatistics)
+                {
+                    <tr>
+                        @if (item.Trip.IsReverse)
+                        {
+                            <td>@item.Trip.Route.Name (Reverse)</td>
+                        }
+                        else
+                        {
+                            <td>@item.Trip.Route.Name</td>
+                        }
+                        <td>@item.Revenue</td>
+                        <td>@item.TotalTicket</td>
+                        <td>@item.TicketInStock</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <tr>
+        <td>
+            <h2 class="text-center mt-4">No Trip added yet</h2>
+        </td>
+    </tr>
+}
+<h2>Statistics for each route</h2>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
@@ -20,17 +62,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.TripStatistics)
+            @foreach (var item in Model.RouteStatistics)
             {
                 <tr>
-                    @if (item.Trip.IsReverse)
-                    {
-                        <td>@item.Trip.Route.Name (Reverse)</td>
-                    }
-                    else
-                    {
-                        <td>@item.Trip.Route.Name</td>
-                    }
+                    <td>@item.Route.Name</td>
                     <td>@item.Revenue</td>
                     <td>@item.TotalTicket</td>
                     <td>@item.TicketInStock</td>

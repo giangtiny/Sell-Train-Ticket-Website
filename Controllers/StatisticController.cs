@@ -25,7 +25,9 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult Trip()
         {
+            var routes = _context.Routes.ToList();
             var tripStatistics = _context.TripStatistics.Include("Trip").Include("Trip.Route").ToList();
+            var routeStatistics = new List<RouteStatistic>();
             long revenueSunday = 0;
             long revenueMonday = 0;
             long revenueTuesday = 0;
@@ -64,9 +66,33 @@ namespace Sell_Train_Ticket.Controllers
                 }
             }
 
+            foreach (var route in routes)
+            {
+                var routeStatistic = new RouteStatistic()
+                {
+                    Route = route,
+                    Revenue = 0,
+                    TotalTicket = 0,
+                    TicketInStock = 0
+                };
+
+                foreach(var item in tripStatistics)
+                {
+                    if (item.Trip.RouteId == route.Id)
+                    {
+                        routeStatistic.Revenue += item.Revenue;
+                        routeStatistic.TotalTicket += item.TotalTicket;
+                        routeStatistic.TicketInStock += item.TicketInStock;
+                    }
+                }
+
+                routeStatistics.Add(routeStatistic);
+            }
+
             var viewModel = new TripStatisticViewModel
             {
                 TripStatistics = tripStatistics,
+                RouteStatistics = routeStatistics,
                 RevenueSunday = revenueSunday,
                 RevenueMonday = revenueMonday,
                 RevenueTuesday = revenueTuesday,

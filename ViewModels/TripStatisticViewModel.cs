@@ -9,6 +9,7 @@ namespace Sell_Train_Ticket.ViewModels
     public class TripStatisticViewModel
     {
         public IEnumerable<TripStatistic> TripStatistics { get; set; }
+        public IEnumerable<RouteStatistic> RouteStatistics { get; set; }
         public long RevenueSunday { get; set; }
         public long RevenueMonday { get; set; }
         public long RevenueTuesday { get; set; }
