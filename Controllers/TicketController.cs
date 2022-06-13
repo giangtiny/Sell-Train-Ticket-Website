@@ -200,7 +200,7 @@ namespace Sell_Train_Ticket.Controllers
             var ticket = _context.Tickets.Single(t => t.Id == ticketId);
             var tripStatistic = _context.TripStatistics.Single(t => t.TripId == ticket.TripId);
 
-            ticket.CustomerId = User.Identity.GetUserId();
+            ticket.CustomerId = CurrentUserId.GetInstance().GetUserId();
             ticket.DepartureStationId = depStaId;
             ticket.DestinationStationId = desStaId;
             ticket.State = true;
@@ -217,7 +217,7 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult Refund()
         {
-            var currentUserId = User.Identity.GetUserId();
+            var currentUserId = CurrentUserId.GetInstance().GetUserId();
             var viewModel = new RefundViewModel
             {
                 Tickets = _context.Tickets
@@ -276,8 +276,10 @@ namespace Sell_Train_Ticket.Controllers
 
             var viewModel = new RefundViewModel
             {
-                Tickets = _context.Tickets.Where(t => t.CustomerId == User.Identity
-                            .GetUserId() && t.State == true).ToList(),
+                Tickets = _context.Tickets
+                .Where(t => t.CustomerId == CurrentUserId.GetInstance().GetUserId() 
+                && t.State == true)
+                .ToList(),
                 AnnounceMessage = "You are only able to refund ticket 30 minutes before the departure time"
             };
 

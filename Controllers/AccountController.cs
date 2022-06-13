@@ -80,6 +80,7 @@ namespace Sell_Train_Ticket.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    CurrentUserId.GetInstance().SetUserId(new ApplicationDbContext().Users.Single(u => u.Email == model.Email).Id);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

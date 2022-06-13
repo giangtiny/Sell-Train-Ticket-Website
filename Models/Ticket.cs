@@ -7,7 +7,8 @@ using System.Web;
 
 namespace Sell_Train_Ticket.Models
 {
-    public class Ticket
+    //Apply Prototype design pattern
+    public class Ticket : ICloneable
     {
         public int Id { get; set; }
 
@@ -47,5 +48,28 @@ namespace Sell_Train_Ticket.Models
         public bool State { get; set; }
 
         public int Price { get; set; }
+
+        public Ticket()
+        {
+
+        }
+
+        public Ticket(string _customerId, int _tripId, int _departureStationId, int _destinationStationId, int _seatId, bool _state, int _price)
+        {
+            CustomerId = _customerId;
+            TripId = _tripId;
+            DepartureStationId = _departureStationId;
+            DestinationStationId = _destinationStationId;
+            SeatId = _seatId;
+            State = _state;
+            Price = _price;
+        }
+
+        public object Clone()
+        {
+            Ticket ticket = new Ticket(CustomerId, TripId, DepartureStationId, DestinationStationId, SeatId, State, Price);
+
+            return ticket;
+        }
     }
 }

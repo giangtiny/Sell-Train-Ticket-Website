@@ -81,16 +81,14 @@ namespace Sell_Train_Ticket.Controllers
                 var firstStation = _context.Stations.Single(s => s.RouteId == trip.RouteId && s.IsFirst == true);
                 var finalStation = _context.Stations.Single(s => s.RouteId == trip.RouteId && s.IsFinal == true);
                 var seats = _context.Seats.Where(s => s.Wagon.TrainId == trip.TrainId).ToList();
+
+                //Apply Prototype design pattern
+                //Create prototype ticket
+                var prototypeTicket = new Ticket(CurrentUserId.GetInstance().GetUserId(), trip.Id, firstStation.Id, finalStation.Id, seats[0].Id, false, 0);
                 foreach(var seat in seats)
                 {
-                    var newTicket = new Ticket();
-                    newTicket.CustomerId = User.Identity.GetUserId();
-                    newTicket.TripId = trip.Id;
-                    newTicket.DepartureStationId = firstStation.Id;
-                    newTicket.DestinationStationId = finalStation.Id;
+                    Ticket newTicket = (Ticket) prototypeTicket.Clone();
                     newTicket.SeatId = seat.Id;
-                    newTicket.State = false;
-                    newTicket.Price = 0;
 
                     _context.Tickets.Add(newTicket);
                 }
