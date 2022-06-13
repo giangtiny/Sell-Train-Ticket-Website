@@ -29,5 +29,10 @@ namespace Sell_Train_Ticket.Models
         public bool IsFirst { get; set; }
 
         public bool IsFinal { get; set; }
+
+        public void Delete(ApplicationDbContext context)
+        {
+            context.Stations.Remove(this);
+        }
     }
 }

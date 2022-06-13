@@ -72,32 +72,8 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult Delete(int id)
         {
-            var routeInDb = _context.Routes.SingleOrDefault(r => r.Id == id);
-            if (routeInDb == null)
-            {
-                return HttpNotFound();
-            }
-
-            //Delete tickets and trips belong to deleted route
-            var trips = _context.Trips.Where(t => t.RouteId == id).ToList();
-            
-            foreach(var trip in trips)
-            {
-                var ticket = _context.Tickets.Single(t => t.TripId == trip.Id);
-                _context.Tickets.Remove(ticket);
-                _context.Trips.Remove(trip);
-            }
-
-            //Delete stations belong to deleted route
-            var stations = _context.Stations.Where(s => s.RouteId == id).ToList();
-            foreach (var station in stations)
-            {
-                _context.Stations.Remove(station);
-            }
-            //Delete route
-            _context.Routes.Remove(routeInDb);
-
-            _context.SaveChanges();
+            var facade = new Facade(_context);
+            facade.DeleteRoute(id);
 
             return RedirectToAction("Index", "Route");
         }

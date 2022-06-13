@@ -12,5 +12,10 @@ namespace Sell_Train_Ticket.Models
 
         [Required]
         public string Name { get; set; }
+
+        public void Delete(ApplicationDbContext context)
+        {
+            context.Routes.Remove(this);
+        }
     }
 }

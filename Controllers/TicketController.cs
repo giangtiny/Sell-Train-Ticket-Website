@@ -173,30 +173,6 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult BuyTicket(int ticketId,int ticketPrice, int depStaId, int desStaId)
         {
-            //var ticket = _context.Tickets
-            //    .Include("Trip")
-            //    .Include("Seat")
-            //    .Include("Seat.SeatType")
-            //    .Single(t => t.Id == ticketId);
-            //var tripStatistic = _context.TripStatistics.Single(t => t.TripId == ticket.TripId);
-
-            //if(ticket == null || tripStatistic == null)
-            //    return HttpNotFound();
-            //ticket.DepartureStationId = depStaId;
-            //ticket.DestinationStationId = desStaId;
-
-            ////Calculate ticket price
-            ////Determine the Id of station that has smaller Id
-            //var smallerStationId = ticket.DepartureStationId < ticket.DestinationStationId ? ticket.DepartureStationId : ticket.DestinationStationId;
-            //var biggerStationId = ticket.DepartureStationId > ticket.DestinationStationId ? ticket.DepartureStationId : ticket.DestinationStationId;
-            //var timeBetweenStations = _context.TimeBetweenStations
-            //    .Where(t => t.FirstStationId >= smallerStationId && t.SecondStationId <= biggerStationId);
-            //var totalTravelTime = 0;
-            //foreach (var item in timeBetweenStations)
-            //{
-            //    totalTravelTime += item.MovingTime;
-            //}
-
             var ticket = _context.Tickets.Single(t => t.Id == ticketId);
             var tripStatistic = _context.TripStatistics.Single(t => t.TripId == ticket.TripId);
 

@@ -71,5 +71,10 @@ namespace Sell_Train_Ticket.Models
 
             return ticket;
         }
+
+        public void Delete(ApplicationDbContext context)
+        {
+            context.Tickets.Remove(this);
+        }
     }
 }

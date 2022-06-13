@@ -38,5 +38,10 @@ namespace Sell_Train_Ticket.Models
         public Train Train { get; set; }
 
         public bool IsReverse { get; set; }
+
+        public void Delete(ApplicationDbContext context)
+        {
+            context.Trips.Remove(this);
+        }
     }
 }
