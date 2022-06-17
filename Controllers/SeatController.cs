@@ -98,6 +98,17 @@ namespace Sell_Train_Ticket.Controllers
                 return HttpNotFound();
             }
 
+            //Check whether the deleted seat is in relation with any ticket
+            var tickets = _context.Tickets.Where(t => t.SeatId == seatInDb.Id).ToList();
+            //If so, return to seat index page and annouce
+            if (tickets.Count() > 0)
+            {
+                var seats = _context.Seats.Include("Wagon").Include("SeatType").ToList();
+                ViewBag.Message = ("Can't delete this seat!");
+
+                return View("/Views/Seat/Index.cshtml", seats);
+            }
+
             _context.Seats.Remove(seatInDb);
             _context.SaveChanges();
 

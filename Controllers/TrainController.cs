@@ -78,6 +78,17 @@ namespace Sell_Train_Ticket.Controllers
                 return HttpNotFound();
             }
 
+            //Check whether the deleted train is in relation with any trip
+            var trips = _context.Trips.Where(t => t.TrainId == trainInDb.Id).ToList();
+            //If so, return to train index page and annouce
+            if (trips.Count() > 0)
+            {
+                var trains = _context.Trains.ToList();
+                ViewBag.Message = ("Can't delete this train!");
+
+                return View("/Views/Train/Index.cshtml", trains);
+            }
+
             _context.Trains.Remove(trainInDb);
 
             _context.SaveChanges();

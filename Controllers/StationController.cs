@@ -98,6 +98,19 @@ namespace Sell_Train_Ticket.Controllers
                 return HttpNotFound();
             }
 
+            //Check whether the deleted station is in relation with any ticket
+            var tickets = _context.Tickets
+                .Where(t => t.DepartureStationId == stationInDb.Id
+                || t.DestinationStationId == stationInDb.Id).ToList();
+            //If so, return to station index page and annouce
+            if(tickets.Count() > 0)
+            {
+                var stations = _context.Stations.Include("Route").ToList();
+                ViewBag.Message = ("Can't delete this station!");
+
+                return View("/Views/Station/Index.cshtml", stations);
+            }
+
             _context.Stations.Remove(stationInDb);
             _context.SaveChanges();
 

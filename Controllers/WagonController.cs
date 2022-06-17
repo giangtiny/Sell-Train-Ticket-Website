@@ -94,6 +94,17 @@ namespace Sell_Train_Ticket.Controllers
                 return HttpNotFound();
             }
 
+            //Check whether the deleted wagon is in relation with any trip
+            var trips = _context.Trips.Where(t => t.TrainId == wagonInDb.TrainId).ToList();
+            //If so, return to wagon index page and annouce
+            if (trips.Count() > 0)
+            {
+                var wagons = _context.Wagons.Include("Train").ToList();
+                ViewBag.Message = ("Can't delete this wagon!");
+
+                return View("/Views/Wagon/Index.cshtml", wagons);
+            }
+
             _context.Wagons.Remove(wagonInDb);
             _context.SaveChanges();
 
