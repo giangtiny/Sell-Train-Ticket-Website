@@ -23,7 +23,7 @@
                 <td>@ticket.Seat.Name - @ticket.Seat.SeatType.Name</td>
                 <td>@ticket.Seat.Wagon.Name</td>
                 <td>@ticket.Seat.Wagon.Train.Name</td>
-                <td>@ticket.Price</td>
+                <td>@ticket.Price.ToString("#,##") VND</td>
                 @if (ticket.State)
                 {
                     <td>Ordered</td>
