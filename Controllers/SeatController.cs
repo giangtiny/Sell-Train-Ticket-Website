@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Sell_Train_Ticket.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    //[Authorize(Roles = "Manager")]
     public class SeatController : Controller
     {
         private ApplicationDbContext _context;
@@ -61,7 +61,7 @@ namespace Sell_Train_Ticket.Controllers
         [HttpPost]
         public ActionResult Save(Seat seat)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 var viewModel = new SeatViewModel
                 {
@@ -70,11 +70,11 @@ namespace Sell_Train_Ticket.Controllers
                     SeatTypes = _context.SeatTypes.ToList()
                 };
 
-                return View(viewModel);
+                return View(viewModel); 
             }
-            if (seat.Id == 0)
+            if (seat.Id == 0) 
             {
-                _context.Seats.Add(seat);
+                _context.Seats.Add(seat); 
             }
             else
             {
@@ -82,13 +82,13 @@ namespace Sell_Train_Ticket.Controllers
 
                 seatInDb.Name = seat.Name;
                 seatInDb.SeatTypeId = seat.SeatTypeId;
-                seatInDb.WagonId = seat.WagonId;
+                seatInDb.WagonId = seat.WagonId; 
             }
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Seat");
-        }
+            return RedirectToAction("Index", "Seat"); 
+        } 
 
         public ActionResult Delete(int id)
         {
@@ -97,22 +97,21 @@ namespace Sell_Train_Ticket.Controllers
             {
                 return HttpNotFound();
             }
-
             //Check whether the deleted seat is in relation with any ticket
-            var tickets = _context.Tickets.Where(t => t.SeatId == seatInDb.Id).ToList();
+            var tickets = _context.Tickets.Where(t => t.SeatId == seatInDb.Id).ToList(); 
             //If so, return to seat index page and annouce
-            if (tickets.Count() > 0)
+            if (tickets.Count() > 0) 
             {
                 var seats = _context.Seats.Include("Wagon").Include("SeatType").ToList();
                 ViewBag.Message = ("Can't delete this seat!");
 
-                return View("/Views/Seat/Index.cshtml", seats);
+                return View("/Views/Seat/Index.cshtml", seats); 
             }
 
             _context.Seats.Remove(seatInDb);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Seat");
+            return RedirectToAction("Index", "Seat"); 
         }
     }
 }

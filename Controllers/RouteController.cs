@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Sell_Train_Ticket.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    //[Authorize(Roles = "Manager")]
     public class RouteController : Controller
     {
         private ApplicationDbContext _context;
@@ -49,20 +49,19 @@ namespace Sell_Train_Ticket.Controllers
         [HttpPost]
         public ActionResult Save(Models.Route route)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 var newRoute = new Models.Route();
-
-                return View(newRoute);
+                return View(newRoute); 
             }
-            if (route.Id == 0)
+            if (route.Id == 0) 
             {
                 _context.Routes.Add(route);
             }
             else
             {
                 var routeInDb = _context.Routes.Single(r => r.Id == route.Id);
-                routeInDb.Name = route.Name;
+                routeInDb.Name = route.Name; 
             }
 
             _context.SaveChanges();

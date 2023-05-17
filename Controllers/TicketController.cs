@@ -23,7 +23,7 @@ namespace Sell_Train_Ticket.Controllers
             _context.Dispose();
         }
 
-        [Authorize(Roles = "Manager")]
+        //[Authorize(Roles = "Manager")]
         public ActionResult Index()
         {
             var tickets = _context.Tickets.
@@ -42,11 +42,11 @@ namespace Sell_Train_Ticket.Controllers
         //DeparutreDate)
         public ActionResult FindTrip(FindTripViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 var stations = _context.Stations.ToList();
                 viewModel.Stations = stations;
-                return View("/Views/Home/Index.cshtml", viewModel);
+                return View("/Views/Home/Index.cshtml", viewModel); 
             }
 
             var depSta = _context.Stations.SingleOrDefault(s => s.Id == viewModel.DepartureStation);
@@ -54,23 +54,23 @@ namespace Sell_Train_Ticket.Controllers
 
             //If departure station and destination station have different Route, return 
             //to Index page and annouce
-            if (depSta.RouteId != desSta.RouteId)
+            if (depSta.RouteId != desSta.RouteId) 
             {
                 var stations = _context.Stations.ToList();
                 viewModel.Stations = stations;
                 viewModel.AnnounceMessage = "No trips founded!";
-                return View("/Views/Home/Index.cshtml", viewModel);
+                return View("/Views/Home/Index.cshtml", viewModel); 
             }
             //If in case departure station and destination station are the same
-            if(depSta.Id == desSta.Id)
+            if(depSta.Id == desSta.Id) 
             {
                 var stations = _context.Stations.ToList();
                 viewModel.Stations = stations;
                 viewModel.AnnounceMessage = "No trips founded!";
-                return View("/Views/Home/Index.cshtml", viewModel);
+                return View("/Views/Home/Index.cshtml", viewModel); 
             }
             //If in case customer go reverse trip
-            if(depSta.Id > desSta.Id)
+            if(depSta.Id > desSta.Id) 
             {
                 //Find reverse trips
                 var reverseTrips = _context.Trips
@@ -78,10 +78,10 @@ namespace Sell_Train_Ticket.Controllers
                     .Where(t => t.RouteId == depSta.RouteId 
                     && t.IsReverse 
                     && DateTime.Compare(t.DepartureDate, viewModel.DepartureDate) == 0)
-                    .ToList();
+                    .ToList(); 
 
                 //If no trips founded, return to Index page and announce
-                if (reverseTrips.Count < 1)
+                if (reverseTrips.Count < 1) 
                 {
                     var stations = _context.Stations.ToList();
                     viewModel.Stations = stations;
@@ -93,10 +93,11 @@ namespace Sell_Train_Ticket.Controllers
                 {
                     DepartureStation = depSta,
                     DestinationStation = desSta,
+                    DepartureDate = viewModel.DepartureDate,
                     Trips = reverseTrips
                 };
 
-                return View(_findTicketViewModel);
+                return View(_findTicketViewModel); 
             }
 
             //If in case customer doesn't go reverse trip
@@ -104,10 +105,10 @@ namespace Sell_Train_Ticket.Controllers
                 .Include("Route")
                 .Where(t => t.RouteId == depSta.RouteId 
                 && DateTime.Compare(t.DepartureDate, viewModel.DepartureDate) == 0)
-                .ToList();
+                .ToList(); 
 
             //If no trips founded, return to Index page and announce
-            if (trips.Count < 1)
+            if (trips.Count < 1) 
             {
                 var stations = _context.Stations.ToList();
                 viewModel.Stations = stations;
@@ -123,7 +124,7 @@ namespace Sell_Train_Ticket.Controllers
                 Trips = trips
             };
 
-            return View(findTicketViewModel);            
+            return View(findTicketViewModel);       
         }
 
         public ActionResult FindTicket(int tripId, int depStaId, int desStaId, DateTime depDate)
@@ -216,9 +217,9 @@ namespace Sell_Train_Ticket.Controllers
         {
             var ticket = _context.Tickets.Include("Trip").Include("Seat").Include("Seat.SeatType").SingleOrDefault(t => t.Id == ticketId);
             var tripStatistic = _context.TripStatistics.SingleOrDefault(t => t.TripId == ticket.TripId);
-            int timeCompare = DateTime.Compare(ticket.Trip.DepartureDate.Date, DateTime.Now.Date);
+            int timeCompare = DateTime.Compare(ticket.Trip.DepartureDate.Date, DateTime.Now.Date); 
             //If departure date is later than current date then refund the ticket 
-            if (timeCompare > 0)
+            if (timeCompare > 0) 
             {
                 long tenPercentPrice = ticket.Price / 10;
                 tripStatistic.Revenue -= (ticket.Price - tenPercentPrice);
@@ -227,17 +228,17 @@ namespace Sell_Train_Ticket.Controllers
 
                 _context.SaveChanges();
 
-                return RedirectToAction("Refund", "Ticket");
+                return RedirectToAction("Refund", "Ticket"); 
             }
             //If departure date is equal to current date then compare time
-            if (timeCompare == 0)
+            if (timeCompare == 0) 
             {
                 var departureTime = ticket.Trip.DepartureTime.TimeOfDay;
                 var currentTime = DateTime.Now.TimeOfDay;
-                var diff = departureTime - currentTime;
+                var diff = departureTime - currentTime; 
                 //If the current time is sooner than 30m comapre to departure time then 
                 //refund the ticket
-                if(diff.TotalMinutes > 30)
+                if(diff.TotalMinutes > 30) 
                 {
                     long tenPercentPrice = ticket.Price / 10;
                     tripStatistic.Revenue -= (ticket.Price - tenPercentPrice);
@@ -246,11 +247,11 @@ namespace Sell_Train_Ticket.Controllers
 
                     _context.SaveChanges();
 
-                    return RedirectToAction("Refund", "Ticket");
+                    return RedirectToAction("Refund", "Ticket"); 
                 }
             }
 
-            var viewModel = new RefundViewModel
+            var viewModel = new RefundViewModel 
             {
                 Tickets = _context.Tickets
                 .Where(t => t.CustomerId == CurrentUserId.GetInstance().GetUserId() 
@@ -259,8 +260,8 @@ namespace Sell_Train_Ticket.Controllers
                 AnnounceMessage = "You are only able to refund ticket 30 minutes before the departure time"
             };
 
-            return View("Refund", viewModel);
-        }
+            return View("Refund", viewModel); 
+        } 
 
         public void RenewedTicket(Ticket ticket)
         {
