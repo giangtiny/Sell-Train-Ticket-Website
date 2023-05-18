@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Sell_Train_Ticket.Controllers
 {
-    //[Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Manager")]
     public class TripController : Controller
     {
         private ApplicationDbContext _context;
@@ -84,7 +84,7 @@ namespace Sell_Train_Ticket.Controllers
 
                 //Apply Prototype design pattern
                 //Create prototype ticket
-                var prototypeTicket = new Ticket(CurrentUserId.GetInstance().GetUserId(), trip.Id, firstStation.Id, finalStation.Id, seats[0].Id, false, 0);
+                var prototypeTicket = new Ticket(User.Identity.GetUserId(), trip.Id, firstStation.Id, finalStation.Id, seats[0].Id, false, 0);
                 foreach(var seat in seats)
                 {
                     Ticket newTicket = (Ticket) prototypeTicket.Clone();
