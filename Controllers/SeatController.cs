@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Sell_Train_Ticket.Controllers
 {
-    //[Authorize(Roles = "Manager")]
+    [Authorize(Roles = "Manager")]
     public class SeatController : Controller
     {
         private ApplicationDbContext _context;

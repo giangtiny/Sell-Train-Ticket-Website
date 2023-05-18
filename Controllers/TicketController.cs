@@ -23,7 +23,7 @@ namespace Sell_Train_Ticket.Controllers
             _context.Dispose();
         }
 
-        //[Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager")]
         public ActionResult Index()
         {
             var tickets = _context.Tickets.
@@ -177,7 +177,7 @@ namespace Sell_Train_Ticket.Controllers
             var ticket = _context.Tickets.Single(t => t.Id == ticketId);
             var tripStatistic = _context.TripStatistics.Single(t => t.TripId == ticket.TripId);
 
-            ticket.CustomerId = CurrentUserId.GetInstance().GetUserId();
+            ticket.CustomerId = User.Identity.GetUserId();
             ticket.DepartureStationId = depStaId;
             ticket.DestinationStationId = desStaId;
             ticket.State = true;
@@ -194,7 +194,7 @@ namespace Sell_Train_Ticket.Controllers
 
         public ActionResult Refund()
         {
-            var currentUserId = CurrentUserId.GetInstance().GetUserId();
+            var currentUserId = User.Identity.GetUserId();
             var viewModel = new RefundViewModel
             {
                 Tickets = _context.Tickets
@@ -251,10 +251,12 @@ namespace Sell_Train_Ticket.Controllers
                 }
             }
 
+            var currentUserId = User.Identity.GetUserId();
+
             var viewModel = new RefundViewModel 
             {
-                Tickets = _context.Tickets
-                .Where(t => t.CustomerId == CurrentUserId.GetInstance().GetUserId() 
+                Tickets = _context.Tickets.Include("Seat.Wagon").Include("Seat.Wagon.Train").Include("DepartureStation").Include("DestinationStation")
+                .Where(t => t.CustomerId == currentUserId
                 && t.State == true)
                 .ToList(),
                 AnnounceMessage = "You are only able to refund ticket 30 minutes before the departure time"

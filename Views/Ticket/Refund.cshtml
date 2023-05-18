@@ -5,7 +5,10 @@
 }
 
 <h1 class="my-4">Your Tickets</h1>
-
+@if(!Model.AnnounceMessage.Equals(""))
+{
+    <p class="text-danger">@Model.AnnounceMessage</p>
+}
 @if (Model.Tickets.Count() > 0)
 {
     <table class="table table-striped">
